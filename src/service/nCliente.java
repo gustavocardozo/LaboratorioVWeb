@@ -6,20 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import model.*;
 
@@ -231,11 +225,11 @@ public class nCliente {
 		Statement st = null;
 		
 		try{			
+			Class.forName("com.mysql.jdbc.Driver");
 			conn= (Connection) DriverManager.getConnection(host+dbName,user,pass);
 			st = (Statement) conn.createStatement();
 			
 			ResultSet rs = st.executeQuery(query);
-			
 			while (rs.next())
 			{
 				Cliente clie = new Cliente();
@@ -252,13 +246,14 @@ public class nCliente {
 				clientes.add(clie);
 			}
 			
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally{
 			try {
-				conn.close();
+				if(conn != null)
+					conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

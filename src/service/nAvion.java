@@ -130,7 +130,7 @@ public class nAvion {
 			conn = (Connection) DriverManager.getConnection(host + dbName, user, pass);
 			Statement st = (Statement) conn.createStatement();
 			
-			query = "SELECT NOMBRE, MARCA, CAPACIDAD FROM AVION WHERE ID_AVION="+parametros;
+			query = "SELECT ID_AVION, NOMBRE, CAPACIDAD FROM AVION WHERE ID_AVION="+parametros;
 			
 			ResultSet rs = st.executeQuery(query);
 			

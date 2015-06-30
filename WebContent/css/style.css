@@ -26,3 +26,8 @@ header{
 .menu li a:hover{
 	color:black;
 }
+/*	Fin Menu 	*/
+.contenedor{
+	padding-left: 15px;
+  	padding-right: 15px;
+}

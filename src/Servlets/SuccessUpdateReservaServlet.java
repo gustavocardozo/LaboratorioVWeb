@@ -23,7 +23,7 @@ public class SuccessUpdateReservaServlet extends GenericServlet {
 		
 		if(n.ActualizarReserva(r))
 		{
-			
+			boolean $var = true;
 		}
 			
 		

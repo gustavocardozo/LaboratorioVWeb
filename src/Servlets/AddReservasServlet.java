@@ -1,9 +1,6 @@
 package Servlets;
 
-import java.util.List;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +33,6 @@ public class AddReservasServlet extends GenericServlet {
 		request.setAttribute("clientes", nC.ListaBase());
 		request.setAttribute("vuelos", nV.ListaVuelos());
 		request.setAttribute("paquetes", nP.ListaBase());
-		request.setAttribute("string", "Hola, soy un ejemplo");
 	
 		request.getRequestDispatcher("/AgregarReserva.jsp").forward(request, response);
 		

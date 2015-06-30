@@ -31,7 +31,7 @@ public class nVuelo {
 			Statement st = (Statement) conn.createStatement();
 			
 			
-			ResultSet rs = st.executeQuery("SELECT ID_VUELO, ID_AVION, HORARIO_PARTIDA, HORARIO_LLEGADA FROM VUELO");
+			ResultSet rs = st.executeQuery("SELECT ID_VUELO, ID_AVION, DESDE, HASTA, PARTIDA, LLEGADA FROM VUELO");
 			while(rs.next()){
 				
 				Vuelo vuelo = new Vuelo();
@@ -39,8 +39,10 @@ public class nVuelo {
 				
 				vuelo.setAvion(nA.GetAvionByID(rs.getInt("ID_AVION")));
 				vuelo.setIdVuelo(rs.getInt("ID_VUELO"));
-				vuelo.setLlegada(rs.getDate("HORARIO_LLEGADA"));
-				vuelo.setPartida(rs.getDate("HORARIO PARTIDA"));
+				vuelo.setDesde(rs.getString("DESDE"));
+				vuelo.setHasta(rs.getString("HASTA"));
+				vuelo.setLlegada(rs.getDate("LLEGADA"));
+				vuelo.setPartida(rs.getDate("PARTIDA"));
 				
 				lista.add(vuelo);
 				
@@ -114,7 +116,7 @@ public class nVuelo {
 			conn = (Connection) DriverManager.getConnection(host + dbName, user, pass);
 			Statement st = (Statement) conn.createStatement();
 			
-			query = "SELECT ID_VUELO, ID_AVION, HORARIO_PARTIDA, HORARIO_LLEGADA FROM VUELO WHERE ID_VUELO ="+parametros;
+			query = "SELECT ID_VUELO, ID_AVION, PARTIDA, LLEGADA, DESDE, HASTA FROM VUELO WHERE ID_VUELO ="+parametros;
 			
 			ResultSet rs = st.executeQuery(query);
 			
@@ -124,8 +126,10 @@ public class nVuelo {
 				
 				vuelo.setAvion(nA.GetAvionByID(rs.getInt("ID_AVION")));
 				vuelo.setIdVuelo(rs.getInt("ID_VUELO"));
-				vuelo.setLlegada(rs.getDate("HORARIO_LLEGADA"));
-				vuelo.setPartida(rs.getDate("HORARIO_PARTIDA"));
+				vuelo.setLlegada(rs.getDate("LLEGADA"));
+				vuelo.setPartida(rs.getDate("PARTIDA"));
+				vuelo.setDesde(rs.getString("DESDE"));
+				vuelo.setHasta(rs.getString("HASTA"));
 				
 			}
 			
